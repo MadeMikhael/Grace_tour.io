@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRACE TOUR</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#fff;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    z-index:1000;
+}
+
+.logo{
+    font-weight:700;
+    font-size:22px;
+    color:#0b2a4a;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+}
+
+.nav-links a:hover{
+    color:#f7941d;
+}
+
+.menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.language-switch button{
+    padding:5px 10px;
+    border:none;
+    background:#f7941d;
+    color:#fff;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.language-switch{
+    display:flex;
+    gap:5px;
+}
+
+/* ================= HERO ================= */
+.hero{
+    height:100vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#fff;
+    overflow:hidden;
+}
+
+.hero-bg{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    transition:opacity 0.3s ease-in-out;
+}
+
+.hero-bg.active{
+    opacity:3;
+}
+
+.hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    z-index:1;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-size:48px;
+    margin:20px 0;
+}
+
+.btn{
+    padding:12px 30px;
+    background:#f7941d;
+    color:#fff;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+
+    .nav-links{
+        position:absolute;
+        top:70px;
+        right:0;
+        background:#fff;
+        width:100%;
+        flex-direction:column;
+        text-align:center;
+        display:none;
+        padding:20px 0;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<div class="navbar">
+    <div class="logo">GRACE TOUR</div>
+
+    <div style="display:flex;align-items:center;gap:15px;">
+        
+        <div class="language-switch">
+            <button onclick="setLanguage('id')">ID</button>
+            <button onclick="setLanguage('en')">EN</button>
+        </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="#" id="nav-home">Home</a>
+        <a href="#" id="nav-rental">Harga Rental</a>
+        <a href="#" id="nav-pickup">Layanan Jemput</a>
+        <a href="#" id="nav-wisata">Wisata</a>
+        <a href="#" id="nav-gallery">Galeri</a>
+        <a href="#" id="nav-booking">Booking</a>
+    </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+
+    <!-- 4 Background Images -->
+    <div class="hero-bg active" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')"></div>
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470')"></div>
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1493558103817-58b2924bce98')"></div>
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e')"></div>
+
+    <div class="hero-content">
+        <h4>GRACETRANSPORT.ID</h4>
+        <h1 id="hero-title">Solusi Perjalanan<br>Wisata Anda</h1>
+        <a href="https://wa.me/6285967099599?text=Halo%20Admin%20Grace%20tour%20and%20travel%20Bali,%20saya%20ingin%20booking%20perjalanan."
+           target="_blank"
+           class="btn"
+           id="hero-button">
+           Booking Sekarang
+        </a>
+    </div>
+
+</section>
+
+<script>
+
+/* ================= MENU TOGGLE ================= */
+function toggleMenu(){
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+/* ================= BACKGROUND SLIDE 2 DETIK ================= */
+let slides = document.querySelectorAll(".hero-bg");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 2000);
+
+/* ================= LANGUAGE SWITCH ================= */
+function setLanguage(lang){
+
+    if(lang === 'id'){
+        document.getElementById("nav-rental").innerText = "Harga Rental";
+        document.getElementById("nav-pickup").innerText = "Layanan Jemput";
+        document.getElementById("nav-wisata").innerText = "Wisata";
+        document.getElementById("nav-gallery").innerText = "Galeri";
+        document.getElementById("nav-booking").innerText = "Booking";
+        document.getElementById("hero-title").innerHTML = "Solusi Perjalanan<br>Wisata Anda";
+        document.getElementById("hero-button").innerText = "Booking Sekarang";
+    }
+
+    if(lang === 'en'){
+        document.getElementById("nav-rental").innerText = "Rental Price";
+        document.getElementById("nav-pickup").innerText = "Pickup Service";
+        document.getElementById("nav-wisata").innerText = "Tour";
+        document.getElementById("nav-gallery").innerText = "Gallery";
+        document.getElementById("nav-booking").innerText = "Booking";
+        document.getElementById("hero-title").innerHTML = "Your Travel<br>Solution";
+        document.getElementById("hero-button").innerText = "Book Now";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
