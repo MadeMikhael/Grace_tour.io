@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Popular Destination</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #dff0f5;
+      --card-bg: #ffffff;
+      --accent: #1a7f8e;
+      --accent-light: #e0f4f7;
+      --text-dark: #1a2e35;
+      --text-muted: #5a7a85;
+      --price: #1a7f8e;
+      --btn-bg: #f0fafb;
+      --btn-hover: #1a7f8e;
+      --dot-active: #1a7f8e;
+      --dot-inactive: #b0cfd6;
+      --shadow: 0 8px 32px rgba(26,127,142,0.10);
+      --radius: 18px;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--bg);
+    }
+
+    /* ── Section ── */
+    .destination-section {
+      position: relative;
+      padding: 72px 24px 60px;
+      background: linear-gradient(160deg, #dff0f5 0%, #eaf8fb 60%, #d0eaf2 100%);
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    /* Decorative pattern background */
+    .destination-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(26,127,142,0.07) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(26,127,142,0.06) 0%, transparent 35%);
+      pointer-events: none;
+    }
+
+    /* Doodle icons background */
+    .doodle-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.13;
+    }
+    .doodle-bg svg {
+      position: absolute;
+    }
+
+    /* ── Header ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+    .section-header .script-label {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .section-header h2 {
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      font-size: clamp(0.88rem, 1.5vw, 1rem);
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Carousel Wrapper ── */
+    .carousel-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .carousel-track-outer {
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    /* ── Card ── */
+    .dest-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      min-width: calc(25% - 18px);
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .dest-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(26,127,142,0.18);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .dest-card:hover .card-img {
+      transform: scale(1.04);
+    }
+    .card-img-wrap {
+      overflow: hidden;
+    }
+
+    .card-body {
+      padding: 18px 20px 20px;
+    }
+    .card-title {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card-location {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .card-location svg { flex-shrink: 0; }
+    .card-price {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--price);
+      margin-bottom: 16px;
+    }
+    .card-price span {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #e8f4f6;
+      padding-top: 14px;
+      gap: 8px;
+    }
+    .card-days {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-book {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--btn-bg);
+      color: var(--accent);
+      border: 1.5px solid var(--accent-light);
+      border-radius: 30px;
+      padding: 7px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: 'Manrope', sans-serif;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .btn-book:hover {
+      background: var(--btn-hover);
+      color: #fff;
+      border-color: var(--btn-hover);
+      transform: scale(1.04);
+    }
+    .btn-book svg { transition: transform 0.2s; }
+    .btn-book:hover svg { transform: translateX(3px); }
+
+    /* ── Dots ── */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 36px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--dot-inactive);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s, width 0.3s;
+      padding: 0;
+    }
+    .dot.active {
+      background: var(--dot-active);
+      width: 28px;
+      border-radius: 5px;
+      transform: none;
+    }
+
+    /* ── Arrow Buttons ── */
+    .carousel-arrows {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .arrow-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, color 0.25s, transform 0.2s;
+    }
+    .arrow-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.08);
+    }
+    .arrow-btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+      transform: none;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .dest-card { min-width: calc(50% - 12px); }
+    }
+    @media (max-width: 600px) {
+      .destination-section { padding: 48px 16px 44px; }
+      .dest-card { min-width: calc(85vw); }
+      .carousel-track { gap: 16px; }
+      .section-header { margin-bottom: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="destination-section">
+
+<!-- Doodle background icons -->
+<div class="doodle-bg">
+    <!-- Plane -->
+    <svg width="60" height="60" style="top:6%;left:5%" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M55 10L5 28l15 5 5 17 10-12 10 4 10-32z" stroke="#1a7f8e" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>
+    <!-- Compass -->
+    <svg width="48" height="48" style="top:10%;right:8%" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#1a7f8e" stroke-width="2"/><path d="M24 10v4M24 34v4M10 24h4M34 24h4" stroke="#1a7f8e" stroke-width="2"/><path d="M19 19l5 5-5 5M29 19l-5 5 5 5" stroke="#1a7f8e" stroke-width="1.5"/></svg>
+    <!-- Hot air balloon -->
+    <svg width="52" height="52" style="bottom:20%;left:3%" viewBox="0 0 52 52" fill="none"><ellipse cx="26" cy="22" rx="14" ry="16" stroke="#1a7f8e" stroke-width="2"/><path d="M20 38h12v6H20z" stroke="#1a7f8e" stroke-width="2"/><path d="M26 6v32M12 22h28" stroke="#1a7f8e" stroke-width="1.5"/></svg>
+    <!-- Camera -->
+    <svg width="54" height="54" style="bottom:18%;right:5%" viewBox="0 0 54 54" fill="none"><rect x="6" y="16" width="42" height="30" rx="5" stroke="#1a7f8e" stroke-width="2"/><circle cx="27" cy="31" r="8" stroke="#1a7f8e" stroke-width="2"/><path d="M18 16l3-6h12l3 6" stroke="#1a7f8e" stroke-width="2"/></svg>
+    <!-- Luggage -->
+    <svg width="46" height="46" style="top:55%;left:88%" viewBox="0 0 46 46" fill="none"><rect x="10" y="14" width="26" height="24" rx="4" stroke="#1a7f8e" stroke-width="2"/><path d="M17 14v-4h12v4M10 26h26" stroke="#1a7f8e" stroke-width="2"/></svg>
+    <!-- Map pin -->
+    <svg width="40" height="40" style="top:30%;left:92%" viewBox="0 0 40 40" fill="none"><path d="M20 4C13.4 4 8 9.4 8 16c0 9 12 20 12 20s12-11 12-20c0-6.6-5.4-12-12-12z" stroke="#1a7f8e" stroke-width="2"/><circle cx="20" cy="16" r="4" stroke="#1a7f8e" stroke-width="2"/></svg>
+  </div>
+
+  <!-- Header -->
+  <div class="section-header">
+    <span class="script-label">Best Recommended Places</span>
+    <h2>Popular Destination we offer for all</h2>
+    <p>Temukan destinasi wisata terbaik yang kami rekomendasikan khusus untuk Anda, dari pantai eksotis hingga pegunungan yang memukau.</p>
+  </div>
+
+  <!-- Carousel -->
+  <div class="carousel-wrapper">
+    <div class="carousel-track-outer">
+      <div class="carousel-track" id="carouselTrack">
+
+        <!-- Card 1 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?w=600&q=80" alt="Ghorepani Poon Hill Trek"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Ghorepani Poon Hill Trek</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Bhutan, Pokhara
+            </div>
+            <div class="card-price">$569.00<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                5 Days
+              </div>
+              <button class="btn-book">Book Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80" alt="Langtang Valley Trekking"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Langtang Valley Trekking</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Bhutan, India, Pokhara
+            </div>
+            <div class="card-price">$600.00<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                6 Days
+              </div>
+              <button class="btn-book">Book Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Short Trek around Pokhara"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Short Trek around Pokhara</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Bhutan, India, Tibet
+            </div>
+            <div class="card-price">$250.00<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                6 Days
+              </div>
+              <button class="btn-book">Book Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=80" alt="Island Peak Climbing"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Island Peak Climbing</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Nepal, Pokhara, Tibet
+            </div>
+            <div class="card-price">$569.00<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                3 Days
+              </div>
+              <button class="btn-book">Book Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali Temple Tour"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Bali Temple Tour</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Ubud, Bali, Indonesia
+            </div>
+            <div class="card-price">$320.00<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                4 Days
+              </div>
+              <button class="btn-book">Book Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&q=80" alt="Santorini Escape"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Santorini Escape</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Greece, Europe
+            </div>
+            <div class="card-price">$890.00<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                7 Days
+              </div>
+              <button class="btn-book">Book Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=600&q=80" alt="Maldives Retreat"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Maldives Retreat</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Malé, Maldives
+            </div>
+            <div class="card-price">$1,200.00<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                5 Days
+              </div>
+              <button class="btn-book">Book Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Swiss Alps Adventure"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Swiss Alps Adventure</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Zurich, Switzerland
+            </div>
+            <div class="card-price">$1,450.00<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                8 Days
+              </div>
+              <button class="btn-book">Book Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="carousel-dots" id="carouselDots"></div>
+
+    <!-- Arrows -->
+    <div class="carousel-arrows">
+      <button class="arrow-btn" id="prevBtn" aria-label="Previous">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="arrow-btn" id="nextBtn" aria-label="Next">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  const track = document.getElementById('carouselTrack');
+  const dotsContainer = document.getElementById('carouselDots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cards = track.querySelectorAll('.dest-card');
+  const totalCards = cards.length;
+
+  let currentIndex = 0;
+  let visibleCount = 4;
+  let autoplayTimer;
+
+  function getVisibleCount() {
+    const w = window.innerWidth;
+    if (w <= 600) return 1;
+    if (w <= 1024) return 2;
+    return 4;
+  }
+
+  function getMaxIndex() {
+    return totalCards - visibleCount;
+  }
+
+  function buildDots() {
+    dotsContainer.innerHTML = '';
+    const totalDots = getMaxIndex() + 1;
+    for (let i = 0; i < totalDots; i++) {
+      const dot = document.createElement('button');
+      dot.classList.add('dot');
+      dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      if (i === currentIndex) dot.classList.add('active');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateDots() {
+    dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  function getCardWidth() {
+    const gap = 24;
+    const trackWidth = track.parentElement.offsetWidth;
+    return (trackWidth - gap * (visibleCount - 1)) / visibleCount;
+  }
+
+  function goTo(index) {
+    const max = getMaxIndex();
+    currentIndex = Math.max(0, Math.min(index, max));
+    const cardW = getCardWidth();
+    const gap = window.innerWidth <= 600 ? 16 : 24;
+    track.style.transform = `translateX(-${currentIndex * (cardW + gap)}px)`;
+    updateDots();
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= max;
+  }
+
+  function init() {
+    visibleCount = getVisibleCount();
+    currentIndex = Math.min(currentIndex, getMaxIndex());
+    buildDots();
+    goTo(currentIndex);
+  }
+
+  prevBtn.addEventListener('click', () => { goTo(currentIndex - 1); resetAutoplay(); });
+  nextBtn.addEventListener('click', () => { goTo(currentIndex + 1); resetAutoplay(); });
+
+  // Touch/swipe
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? goTo(currentIndex + 1) : goTo(currentIndex - 1);
+    resetAutoplay();
+  });
+
+  // Autoplay
+  function startAutoplay() {
+    autoplayTimer = setInterval(() => {
+      const next = currentIndex >= getMaxIndex() ? 0 : currentIndex + 1;
+      goTo(next);
+    }, 3500);
+  }
+  function resetAutoplay() {
+    clearInterval(autoplayTimer);
+    startAutoplay();
+  }
+
+  window.addEventListener('resize', init);
+  init();
+  startAutoplay();
+</script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Gallery</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --purple: #7c3aed;
+        --black: #0f0f0f;
+        --gray: #6b7280;
+        --light: #f9fafb;
+        --border: #e5e7eb;
+        --white: #ffffff;
+      }
+
+      body {
+        font-family: "Outfit", sans-serif;
+        background: var(--white);
+        color: var(--black);
+      }
+
+    /* ═══════════════════════════════
+    HEADER
+    ═══════════════════════════════ */
+    .gallery-header {
+        text-align: center;
+        padding: 72px 24px 56px;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+    .gallery-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: var(--purple);
+        margin-bottom: 18px;
+      }
+      .gallery-label svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--purple);
+        stroke-width: 2;
+        fill: none;
+      }
+
+      .gallery-title {
+        font-family: "Instrument Serif", serif;
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 400;
+        line-height: 1.2;
+        color: var(--black);
+        margin-bottom: 16px;
+      }
+
+      .gallery-desc {
+        font-size: 0.92rem;
+        line-height: 1.7;
+        color: var(--gray);
+        margin-bottom: 28px;
+      }
+
+      .gallery-cta {
+        display: inline-block;
+        padding: 13px 28px;
+        background: var(--black);
+        color: var(--white);
+        font-family: "Outfit", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 600;
+        border-radius: 999px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.25s,
+          transform 0.2s;
+      }
+      .gallery-cta:hover {
+        background: #222;
+        transform: scale(1.03);
+      }
+
+      /* ═══════════════════════════════
+       TOP ROW — horizontal scroll strip
+    ═══════════════════════════════ */
+      .gallery-strip-wrap {
+        width: 100%;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 0 0 8px;
+      }
+      .gallery-strip-wrap::-webkit-scrollbar {
+        display: none;
+      }
+
+      .gallery-strip {
+        display: flex;
+        gap: 6px;
+        padding: 0 48px;
+        width: max-content;
+      }
+
+      .strip-img {
+        height: 220px;
+        border-radius: 6px;
+        object-fit: cover;
+        display: block;
+        flex-shrink: 0;
+        transition:
+          transform 0.4s ease,
+          filter 0.4s ease;
+        cursor: pointer;
+      }
+      .strip-img:hover {
+        transform: scale(1.025);
+        filter: brightness(1.05);
+      }
+
+      /* Variable widths for visual rhythm */
+      .strip-img:nth-child(1) {
+        width: 160px;
+      }
+      .strip-img:nth-child(2) {
+        width: 240px;
+      }
+      .strip-img:nth-child(3) {
+        width: 240px;
+      }
+      .strip-img:nth-child(4) {
+        width: 240px;
+      }
+      .strip-img:nth-child(5) {
+        width: 90px;
+        object-position: center;
+      }
+
+      /* ═══════════════════════════════
+       BOTTOM GRID — 4 cards
+    ═══════════════════════════════ */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 6px 48px 64px;
+      }
+
+      .gallery-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 6px;
+        cursor: pointer;
+        background: #eee;
+      }
+
+      .gallery-card img {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .gallery-card:hover img {
+        transform: scale(1.06);
+      }
+
+      /* Card footer */
+      .card-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(4px);
+        font-size: 0.75rem;
+      }
+
+      .card-num {
+        font-weight: 600;
+        color: var(--black);
+        letter-spacing: 0.05em;
+      }
+
+      .card-details {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: 500;
+        color: var(--black);
+        text-decoration: none;
+        transition: gap 0.2s;
+      }
+      .card-details:hover {
+        gap: 7px;
+      }
+      .card-details svg {
+        width: 11px;
+        height: 11px;
+        stroke: currentColor;
+        stroke-width: 2;
+        fill: none;
+      }
+
+      /* ═══════════════════════════════
+       LIGHTBOX
+    ═══════════════════════════════ */
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        animation: lbIn 0.25s ease;
+      }
+      .lightbox.open {
+        display: flex;
+      }
+      @keyframes lbIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .lightbox img {
+        max-width: 90vw;
+        max-height: 88vh;
+        border-radius: 8px;
+        object-fit: contain;
+        animation: lbScale 0.3s ease;
+      }
+      @keyframes lbScale {
+        from {
+          transform: scale(0.92);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+      .lb-close {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: #fff;
+        font-size: 1.4rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+      .lb-close:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* ═══════════════════════════════
+       ENTRANCE ANIMATIONS
+    ═══════════════════════════════ */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .gallery-header {
+        animation: fadeUp 0.7s ease both;
+      }
+      .gallery-strip-wrap {
+        animation: fadeUp 0.7s 0.15s ease both;
+      }
+      .gallery-grid {
+        animation: fadeUp 0.7s 0.25s ease both;
+      }
+
+      /* ═══════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════ */
+      @media (max-width: 900px) {
+        .gallery-strip {
+          padding: 0 24px;
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+          padding: 6px 24px 48px;
+        }
+      }
+      @media (max-width: 540px) {
+        .gallery-header {
+          padding: 48px 20px 36px;
+        }
+        .gallery-strip {
+          padding: 0 16px;
+        }
+        .strip-img {
+          height: 160px;
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+          padding: 6px 16px 40px;
+        }
+      }
+      @media (max-width: 380px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── HEADER ── -->
+    <div class="gallery-header">
+      <div class="gallery-label">
+        Our Gallery
+        <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+      </div>
+      <h2 class="gallery-title">
+        Explore the Gallery and<br />See the Future Unfold
+      </h2>
+      <p class="gallery-desc">
+        From sleek details to real-life moments of interaction, this gallery
+        captures<br />
+        the essence of what makes the future feel real today.
+      </p>
+      <button class="gallery-cta">Explore the Gallery</button>
+    </div>
+
+    <!-- ── STRIP (top row) ── -->
+    <div class="gallery-strip-wrap">
+      <div class="gallery-strip">
+        <img
+          class="strip-img"
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&auto=format&fit=crop"
+          alt="Mountain house"
+          loading="lazy"
+        />
+        <img
+          class="strip-img"
+          src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=500&auto=format&fit=crop"
+          alt="Modern building"
+          loading="lazy"
+        />
+        <img
+          class="strip-img"
+          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&auto=format&fit=crop&q=80"
+          alt="Curved house"
+          loading="lazy"
+        />
+        <img
+          class="strip-img"
+          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&auto=format&fit=crop"
+          alt="Interior"
+          loading="lazy"
+        />
+        <img
+          class="strip-img"
+          src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=200&auto=format&fit=crop"
+          alt="Detail"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- ── BOTTOM GRID ── -->
+    <div class="gallery-grid">
+      <div
+        class="gallery-card"
+        data-src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&auto=format&fit=crop"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&auto=format&fit=crop"
+          alt="Aerial view"
+          loading="lazy"
+        />
+        <div class="card-footer">
+          <span class="card-num">001</span>
+          <a href="#" class="card-details">
+            Details
+            <svg viewBox="0 0 12 12">
+              <line x1="0" y1="12" x2="12" y2="0" />
+              <polyline points="7,0 12,0 12,5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="gallery-card"
+        data-src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=900&auto=format&fit=crop"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=500&auto=format&fit=crop"
+          alt="Arch building"
+          loading="lazy"
+        />
+        <div class="card-footer">
+          <span class="card-num">002</span>
+          <a href="#" class="card-details">
+            Details
+            <svg viewBox="0 0 12 12">
+              <line x1="0" y1="12" x2="12" y2="0" />
+              <polyline points="7,0 12,0 12,5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="gallery-card"
+        data-src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?w=900&auto=format&fit=crop"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?w=500&auto=format&fit=crop"
+          alt="Tunnel light"
+          loading="lazy"
+        />
+        <div class="card-footer">
+          <span class="card-num">003</span>
+          <a href="#" class="card-details">
+            Details
+            <svg viewBox="0 0 12 12">
+              <line x1="0" y1="12" x2="12" y2="0" />
+              <polyline points="7,0 12,0 12,5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="gallery-card"
+        data-src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=900&auto=format&fit=crop"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=500&auto=format&fit=crop"
+          alt="Green tower"
+          loading="lazy"
+        />
+        <div class="card-footer">
+          <span class="card-num">004</span>
+          <a href="#" class="card-details">
+            Details
+            <svg viewBox="0 0 12 12">
+              <line x1="0" y1="12" x2="12" y2="0" />
+              <polyline points="7,0 12,0 12,5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── LIGHTBOX ── -->
+    <div class="lightbox" id="lightbox">
+      <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+      <img id="lbImg" src="" alt="Gallery image" />
+    </div>
+
+    <script>
+      /* ── Lightbox ── */
+      const lb = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lbImg");
+      const lbClose = document.getElementById("lbClose");
+
+      function openLB(src) {
+        lbImg.src = src;
+        lb.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLB() {
+        lb.classList.remove("open");
+        document.body.style.overflow = "";
+        setTimeout(() => {
+          lbImg.src = "";
+        }, 300);
+      }
+
+      // Grid cards
+      document.querySelectorAll(".gallery-card").forEach((card) => {
+        card.addEventListener("click", () => openLB(card.dataset.src));
+      });
+
+      // Strip images
+      document.querySelectorAll(".strip-img").forEach((img) => {
+        img.addEventListener("click", () =>
+          openLB(
+            img.src
+              .replace("w=400", "w=1200")
+              .replace("w=500", "w=1200")
+              .replace("w=200", "w=1200"),
+          ),
+        );
+      });
+
+      lbClose.addEventListener("click", closeLB);
+      lb.addEventListener("click", (e) => {
+        if (e.target === lb) closeLB();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLB();
+      });
+
+      /* ── Drag-to-scroll strip ── */
+      const strip = document.querySelector(".gallery-strip-wrap");
+      let isDragging = false,
+        startX,
+        scrollLeft;
+
+      strip.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.pageX - strip.offsetLeft;
+        scrollLeft = strip.scrollLeft;
+        strip.style.cursor = "grabbing";
+      });
+      strip.addEventListener("mouseleave", () => {
+        isDragging = false;
+        strip.style.cursor = "";
+      });
+      strip.addEventListener("mouseup", () => {
+        isDragging = false;
+        strip.style.cursor = "";
+      });
+      strip.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - strip.offsetLeft;
+        const walk = (x - startX) * 1.4;
+        strip.scrollLeft = scrollLeft - walk;
+      });
+
+      /* ── Details links prevent default ── */
+      document.querySelectorAll(".card-details").forEach((a) => {
+        a.addEventListener("click", (e) => e.preventDefault());
+      });
+    </script>
+  </body>
+</html>

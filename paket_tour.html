@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/img/icon_web.png" style="width: 48px; height: 48px;"/>
+<title>GRACE TOUR</title>
+<link rel="stylesheet" href="paket.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<div class="navbar">
+    <div class="logo">
+      <img src="img/icon_web.png" alt="">
+      GRACE TOUR
+    </div>
+    <div style="display:flex;align-items:center;gap:15px;">
+        <div class="language-switch">
+            <button onclick="setLanguage('id')" id="lang-btn-id" class="lang-active">ID</button>
+            <button onclick="setLanguage('en')" id="lang-btn-en">EN</button>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+ 
+    <div class="nav-links" id="navLinks">
+        <a href="main.html"        id="nav-home">Home</a>
+        <a href="paket_tour.html"  id="nav-rentall">Paket Tour & Wisata</a>
+        <a href="Galeri.html"      id="nav-gallery">Galeri</a>
+    </div>
+</div>
+ 
+<!-- ================= DESTINATION SECTION ================= -->
+<section class="destination-section">
+ 
+  <!-- Doodle background icons -->
+  <div class="doodle-bg">
+    <svg width="60" height="60" style="top:6%;left:5%" viewBox="0 0 60 60" fill="none"><path d="M55 10L5 28l15 5 5 17 10-12 10 4 10-32z" stroke="#1a7f8e" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>
+    <svg width="48" height="48" style="top:10%;right:8%" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#1a7f8e" stroke-width="2"/><path d="M24 10v4M24 34v4M10 24h4M34 24h4" stroke="#1a7f8e" stroke-width="2"/><path d="M19 19l5 5-5 5M29 19l-5 5 5 5" stroke="#1a7f8e" stroke-width="1.5"/></svg>
+    <svg width="52" height="52" style="bottom:20%;left:3%" viewBox="0 0 52 52" fill="none"><ellipse cx="26" cy="22" rx="14" ry="16" stroke="#1a7f8e" stroke-width="2"/><path d="M20 38h12v6H20z" stroke="#1a7f8e" stroke-width="2"/><path d="M26 6v32M12 22h28" stroke="#1a7f8e" stroke-width="1.5"/></svg>
+    <svg width="54" height="54" style="bottom:18%;right:5%" viewBox="0 0 54 54" fill="none"><rect x="6" y="16" width="42" height="30" rx="5" stroke="#1a7f8e" stroke-width="2"/><circle cx="27" cy="31" r="8" stroke="#1a7f8e" stroke-width="2"/><path d="M18 16l3-6h12l3 6" stroke="#1a7f8e" stroke-width="2"/></svg>
+    <svg width="46" height="46" style="top:55%;left:88%" viewBox="0 0 46 46" fill="none"><rect x="10" y="14" width="26" height="24" rx="4" stroke="#1a7f8e" stroke-width="2"/><path d="M17 14v-4h12v4M10 26h26" stroke="#1a7f8e" stroke-width="2"/></svg>
+    <svg width="40" height="40" style="top:30%;left:92%" viewBox="0 0 40 40" fill="none"><path d="M20 4C13.4 4 8 9.4 8 16c0 9 12 20 12 20s12-11 12-20c0-6.6-5.4-12-12-12z" stroke="#1a7f8e" stroke-width="2"/><circle cx="20" cy="16" r="4" stroke="#1a7f8e" stroke-width="2"/></svg>
+  </div>
+ 
+  <!-- Header -->
+  <div class="section-header">
+    <span class="script-label" id="dest-label">Tempat Terbaik yang Direkomendasikan</span>
+    <h2 id="dest-title">Destinasi Populer yang Kami Tawarkan untuk Semua</h2>
+    <p id="dest-desc">Temukan destinasi wisata terbaik yang kami rekomendasikan khusus untuk Anda, dari pantai eksotis hingga pegunungan yang memukau.</p>
+  </div>
+ 
+  <!-- Carousel -->
+  <div class="carousel-wrapper">
+    <div class="carousel-track-outer">
+      <div class="carousel-track" id="carouselTrack">
+ 
+        <!-- Card 1 : Ubud -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="img/ubud.jpg" alt="Ghorepani Poon Hill Trek"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Ubud Tour</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Gianyar, Bali
+            </div>
+            <div class="card-price">Rp. 200.000<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                <span data-translate="days" data-value="5">1 Hari</span>
+              </div>
+              <a href="https://wa.me/6285738951353?text=Halo%20saya%20ingin%20memesan%20paket%20tour%20Ubud%20Tour%20Serta%20Rinciannya%20?" target="_blank">
+                <button class="btn-book" data-translate="btn-book">
+                  Pesan Sekarang
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Card 2 : Kintamani -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="img/Kintamani, Bali.jpg" alt="Langtang Valley Trekking"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Kintamani Tour</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Bangli, Bali
+            </div>
+            <div class="card-price">Rp.400.000<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                <span data-translate="days" data-value="6">1 Hari</span>
+              </div>
+              <a href="https://wa.me/6285738951353?text=Halo%20saya%20ingin%20memesan%20paket%20tour%20Kintamani%20Tour%20Serta%20Rinciannya%20?" target="_blank">
+                <button class="btn-book" data-translate="btn-book">
+                  Pesan Sekarang
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Card 3 : Uluwatu -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="img/Canggu, Bali, Indonesia.jpg" alt="Short Trek around Pokhara"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Canggu Tour</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Badung, Bali
+            </div>
+            <div class="card-price">Rp. 350.000<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                <span data-translate="days" data-value="6">2 Hari</span>
+              </div>
+              <a href="https://wa.me/6285738951353?text=Halo%20saya%20ingin%20memesan%20paket%20tour%20Canggu%20Tour%20Serta%20Rinciannya%20?" target="_blank">
+                <button class="btn-book" data-translate="btn-book">
+                  Pesan Sekarang
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Card 4 : Pantai Kuta -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="img/Majestic Uluwatu Temple.jpg" alt="Island Peak Climbing"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Uluwatu Tour</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Badung, Bali
+            </div>
+            <div class="card-price">Rp. 375.000<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                <span data-translate="days" data-value="3">1 Hari</span>
+              </div>
+              <a href="https://wa.me/6285738951353?text=Halo%20saya%20ingin%20memesan%20paket%20tour%20Uluwatu%20Tour%20Serta%20Rinciannya%20?" target="_blank">
+                <button class="btn-book" data-translate="btn-book">
+                  Pesan Sekarang
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Card 5 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="img/bedugull.jpg" alt="Bali Temple Tour"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Bedugul Tour</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Tabanan, Bali
+            </div>
+            <div class="card-price">Rp.400.000<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                <span data-translate="days" data-value="4">1 Hari</span>
+              </div>
+              <a href="https://wa.me/6285738951353?text=Halo%20saya%20ingin%20memesan%20paket%20tour%20Bedugul%20Tour%20Serta%20Rinciannya%20?" target="_blank">
+                <button class="btn-book" data-translate="btn-book">
+                  Pesan Sekarang
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Card 6 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="img/Kuta Bali.jpg" alt="Santorini Escape"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Kuta & Seminyak Tour</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Badung, Bali
+            </div>
+            <div class="card-price">Rp. 300.000<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                <span data-translate="days" data-value="7">1 Hari</span>
+              </div>
+              <a href="https://wa.me/6285738951353?text=Halo%20saya%20ingin%20memesan%20paket%20tour%20Kuta%20&%20Seminyak%20Tour%20Serta%20Rinciannya%20?" target="_blank">
+                <button class="btn-book" data-translate="btn-book">
+                  Pesan Sekarang
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Card 7 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="img/Pura Tanah Lot.jpg" alt="Maldives Retreat"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Tanah Lot Tour</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Tabanan, Bali
+            </div>
+            <div class="card-price">Rp. 325.000<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                <span data-translate="days" data-value="5">1 Hari</span>
+              </div>
+              <a href="https://wa.me/6285738951353?text=Halo%20saya%20ingin%20memesan%20paket%20tour%20Tanah Lot%20Tour%20Serta%20Rinciannya%20?" target="_blank">
+                <button class="btn-book" data-translate="btn-book">
+                  Pesan Sekarang
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Card 8 -->
+        <div class="dest-card">
+          <div class="card-img-wrap">
+            <img class="card-img" src="img/img.jpg" alt="Swiss Alps Adventure"/>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Lovina & Dolphin Tour</div>
+            <div class="card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5a7a85"/></svg>
+              Buleleng, Bali
+            </div>
+            <div class="card-price">Rp. 500.000<span>/Person</span></div>
+            <div class="card-footer">
+              <div class="card-days">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5a7a85" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#5a7a85" stroke-width="2" stroke-linecap="round"/></svg>
+                <span data-translate="days" data-value="8">2 Hari</span>
+              </div>
+              <a href="https://wa.me/6285738951353?text=Halo%20saya%20ingin%20memesan%20paket%20tour%20Lovina & Dolphin%20Tour%20Serta%20Rinciannya%20?" target="_blank">
+                <button class="btn-book" data-translate="btn-book">
+                  Pesan Sekarang
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+ 
+    <!-- Dots -->
+    <div class="carousel-dots" id="carouselDots"></div>
+ 
+    <!-- Arrows -->
+    <div class="carousel-arrows">
+      <button class="arrow-btn" id="prevBtn" aria-label="Previous">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="arrow-btn" id="nextBtn" aria-label="Next">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+ 
+</section>
+ 
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-main">
+ 
+    <!-- Brand -->
+    <div class="brand">
+      <h2>Grace Tour</h2>
+      <p id="footer-desc">Di Grace Tour, Setiap Detik Merupakan Petualangan Baru dalam Kenyamanan dan Kemewahan!</p>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.01" stroke-width="3"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <!-- <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a> -->
+      </div>
+    </div>
+ 
+    <!-- Link -->
+    <div class="footer-col">
+      <h4 id="footer-link-title">Link</h4>
+      <ul>
+        <li><a href="main.html" id="footer-link-1">Beranda</a></li>
+        <li><a href="paket_tour.html" id="footer-link-2">Paket Tour & Wisata</a></li>
+        <li><a href="Galeri.html" id="footer-link-3">Galeri</a></li>
+        <!-- <li><a href="#" id="footer-link-4">Kamar</a></li>
+        <li><a href="#" id="footer-link-5">Profil</a></li>
+        <li><a href="#" id="footer-link-6">FAQ</a></li> -->
+      </ul>
+    </div>
+ 
+    <!-- Paket Tour -->
+    <!-- <div class="footer-col">
+      <h4 id="footer-tour-title">Paket Tour</h4>
+      <ul>
+        <li><a href="#" id="footer-tour-1">Standar</a></li>
+        <li><a href="#" id="footer-tour-2">Eksekutif</a></li>
+        <li><a href="#" id="footer-tour-3">Deluxe</a></li>
+        <li><a href="#" id="footer-tour-4">Superior</a></li>
+        <li><a href="#" id="footer-tour-5">Keluarga</a></li>
+        <li><a href="#" id="footer-tour-6">Klasik</a></li>
+      </ul>
+    </div> -->
+ 
+    <!-- Kontak -->
+    <div class="footer-col">
+      <h4 id="footer-contact-title">Kontak Kami</h4>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Bongkasa, Badung, Bali</span>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>gracetour@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5.09 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 23 18v2z" stroke-width="2"/></svg>
+        <span>+62 857-3895-1353</span>
+      </div>
+    </div>
+ 
+    <!-- Map -->
+    <div class="footer-col map-col">
+      <h4 id="footer-map-title">Peta</h4>
+      <div class="map-embed">
+        <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.518!2d115.1754!3d-8.5778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd239b5b2bdb2c7%3A0x5030bfbcaf6d7e29!2sBongkasa%2C%20Badung%20Regency%2C%20Bali!5e0!3m2!1sid!2sid!4v1"
+          title="Lokasi Grace Tour">
+        </iframe>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span class="copy" id="footer-copy">© Copyright by Grace Tour 2026. Semua hak dilindungi</span>
+      <nav class="legal-links">
+        <a href="#" id="footer-privacy">Kebijakan Privasi</a>
+        <a href="#" id="footer-terms">Syarat Penggunaan</a>
+        <a href="#" id="footer-legal">Legal</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="script_tour.js"></script>
+<script>
+      const track = document.getElementById("carouselTrack");
+const dotsContainer = document.getElementById("carouselDots");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const cards = track.querySelectorAll(".dest-card");
+const totalCards = cards.length;
+
+let currentIndex = 0;
+let visibleCount = 1;
+let autoplayTimer;
+let isSliderMode = false;
+
+// ── Cek apakah mode slider (tablet/HP) ──
+function checkSliderMode() {
+  return window.innerWidth <= 768;
+}
+
+function getVisibleCount() {
+  const w = window.innerWidth;
+  if (w <= 480) return 1;
+  return 2; // tablet
+}
+
+function getMaxIndex() {
+  return Math.max(0, totalCards - visibleCount);
+}
+
+// ── Terapkan lebar kartu (hanya di mode slider) ──
+function applyCardWidths() {
+  const gap = 16;
+  const trackWidth = track.parentElement.offsetWidth;
+  const cardW = (trackWidth - gap * (visibleCount - 1)) / visibleCount;
+
+  cards.forEach(card => {
+    card.style.width    = cardW + "px";
+    card.style.minWidth = cardW + "px";
+  });
+
+  return cardW;
+}
+
+// ── Reset lebar kartu (mode grid) ──
+function resetCardWidths() {
+  cards.forEach(card => {
+    card.style.width    = "";
+    card.style.minWidth = "";
+  });
+}
+
+// ── Bangun dots ──
+function buildDots() {
+  dotsContainer.innerHTML = "";
+  const total = getMaxIndex() + 1;
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement("button");
+    dot.classList.add("dot");
+    dot.setAttribute("aria-label", `Slide ${i + 1}`);
+    if (i === currentIndex) dot.classList.add("active");
+    dot.addEventListener("click", () => { goTo(i); resetAutoplay(); });
+    dotsContainer.appendChild(dot);
+  }
+}
+
+function updateDots() {
+  dotsContainer.querySelectorAll(".dot").forEach((d, i) => {
+    d.classList.toggle("active", i === currentIndex);
+  });
+}
+
+// ── Gerak slider ──
+function goTo(index) {
+  if (!isSliderMode) return;
+
+  const max = getMaxIndex();
+  currentIndex = Math.max(0, Math.min(index, max));
+
+  const gap = 16;
+  const cardW = applyCardWidths();
+  track.style.transform = `translateX(-${currentIndex * (cardW + gap)}px)`;
+
+  updateDots();
+  prevBtn.disabled = currentIndex === 0;
+  nextBtn.disabled = currentIndex >= max;
+}
+
+// ── Init ──
+function init() {
+  isSliderMode = checkSliderMode();
+
+  if (isSliderMode) {
+    // Mode slider
+    visibleCount = getVisibleCount();
+    currentIndex = Math.min(currentIndex, getMaxIndex());
+    applyCardWidths();
+    buildDots();
+    goTo(currentIndex);
+    startAutoplay();
+  } else {
+    // Mode grid — reset semua
+    clearInterval(autoplayTimer);
+    resetCardWidths();
+    track.style.transform = "";
+    currentIndex = 0;
+    dotsContainer.innerHTML = "";
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+  }
+}
+
+// ── Tombol panah ──
+prevBtn.addEventListener("click", () => { goTo(currentIndex - 1); resetAutoplay(); });
+nextBtn.addEventListener("click", () => { goTo(currentIndex + 1); resetAutoplay(); });
+
+// ── Swipe touch ──
+let startX = 0;
+track.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+}, { passive: true });
+
+track.addEventListener("touchend", e => {
+  if (!isSliderMode) return;
+  const diff = startX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) {
+    diff > 0 ? goTo(currentIndex + 1) : goTo(currentIndex - 1);
+  }
+  resetAutoplay();
+});
+
+// ── Autoplay ──
+function startAutoplay() {
+  clearInterval(autoplayTimer);
+  autoplayTimer = setInterval(() => {
+    const next = currentIndex >= getMaxIndex() ? 0 : currentIndex + 1;
+    goTo(next);
+  }, 3500);
+}
+
+function resetAutoplay() {
+  clearInterval(autoplayTimer);
+  if (isSliderMode) startAutoplay();
+}
+
+// ── Resize ──
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(init, 150);
+});
+
+init();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/img/icon_web.png"/>
+  <title>GRACE TOUR</title>
+  <link rel="stylesheet" href="galeri.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<div class="navbar">
+  <div class="logo">
+    <img src="img/icon_web.png" alt="">
+    GRACE TOUR
+  </div>
+
+  <div style="display:flex;align-items:center;gap:15px;">
+    <div class="language-switch">
+      <button onclick="setLanguage('id')" id="lang-btn-id" class="lang-active">ID</button>
+      <button onclick="setLanguage('en')" id="lang-btn-en">EN</button>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="main.html"               id="nav-home">Home</a>
+    <a href="paket_tour.html" id="nav-rental">Paket Tour & Wisata</a>
+    <a href="Galeri.html"     id="nav-gallery">Galeri</a>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<div class="gallery-header">
+  <div class="gallery-label">
+    <span id="gallery-label-text">Galeri Kami</span>
+    <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+  </div>
+  <h2 class="gallery-title" id="gallery-title">
+    Jelajahi Galeri dan<br>Lihat Masa Depan Terungkap
+  </h2>
+  <p class="gallery-desc" id="gallery-desc">
+    Dari detail yang elegan hingga momen interaksi nyata, galeri ini menangkap<br>
+    esensi dari apa yang membuat masa depan terasa nyata hari ini.
+  </p>
+  <a href="#gallery" class="gallery-cta" id="gallery-cta">Jelajahi Galeri</a>
+</div>
+
+<!-- ── STRIP (top row) ── -->
+<div id="gallery" class="gallery-strip-wrap">
+  <div class="gallery-strip">
+    <img class="strip-img" src="img/bedugul.jpg" alt="Mountain house" loading="lazy"/>
+    <img class="strip-img" src="img/Canggu, Bali, Indonesia.jpg" alt="Modern building" loading="lazy"/>
+    <img class="strip-img" src="img/img.jpg" alt="Curved house" loading="lazy"/>
+    <img class="strip-img" src="img/jimbaran.jpg" alt="Interior" loading="lazy"/>
+    <img class="strip-img" src="img/Kintamani, Bali.jpg" alt="Detail" loading="lazy"/>
+  </div>
+</div>
+
+<!-- ── BOTTOM GRID 4-3-3 ── -->
+<div class="gallery-grid">
+
+  <!-- Row 1 — 4 cards -->
+  <div class="gallery-card" data-src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&auto=format&fit=crop">
+    <img src="img/WhatsApp Image 2026-05-09 at 18.11.57 (1).jpeg" alt="Aerial river" loading="lazy"/>
+  </div>
+  <div class="gallery-card" data-src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&auto=format&fit=crop">
+    <img src="img/WhatsApp Image 2026-05-09 at 18.11.57.jpeg" alt="Modern building" loading="lazy"/>
+  </div>
+  <div class="gallery-card" data-src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&auto=format&fit=crop">
+    <img src="img/WhatsApp Image 2026-05-09 at 18.11.58.jpeg" alt="Curved villa" loading="lazy"/>
+  </div>
+  <div class="gallery-card" data-src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&auto=format&fit=crop">
+    <img src="img/WhatsApp Image 2026-05-09 at 18.11.59.jpeg" alt="Interior" loading="lazy"/>
+  </div>
+
+  <!-- Row 2 — 3 cards -->
+  <div class="gallery-card" data-src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1200&auto=format&fit=crop">
+    <img src="img/ubud.jpg" alt="Arch building" loading="lazy"/>
+  </div>
+  <div class="gallery-card" data-src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?w=1200&auto=format&fit=crop">
+    <img src="img/KUTA.jpg" alt="Tunnel light" loading="lazy"/>
+  </div>
+  <div class="gallery-card" data-sr c="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&auto=format&fit=crop">
+    <img src="img/Majestic Uluwatu Temple.jpg" alt="Green tower" loading="lazy"/>
+  </div>
+
+  <!-- Row 3 — 3 cards -->
+  <div class="gallery-card" data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&auto=format&fit=crop">
+    <img src="img/Pura Tanah Lot.jpg" alt="Mountain fog" loading="lazy"/>
+  </div>
+  <div class="gallery-card" data-src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&auto=format&fit=crop">
+    <img src="img/pp.jpg" alt="Glass facade" loading="lazy"/>
+  </div>
+  <div class="gallery-card" data-src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=1200&auto=format&fit=crop">
+    <img src="img/Bali, Indonesia.jpg" alt="Night city" loading="lazy"/>
+  </div>
+
+</div>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <img id="lbImg" src="" alt="Gallery image"/>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-main">
+
+    <div class="brand">
+      <h2>Grace Tour</h2>
+      <p id="footer-desc">Di Grace Tour, Setiap Detik Merupakan Petualangan Baru dalam Kenyamanan dan Kemewahan!</p>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.01" stroke-width="3"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <!-- <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a> -->
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4 id="footer-link-title">Link</h4>
+      <ul>
+        <li><a href="main.html" id="footer-link-1">Beranda</a></li>
+        <li><a href="paket_tour.html" id="footer-link-2">Paket Tour & Wisata</a></li>
+        <li><a href="Galeri.html" id="footer-link-3">Galeri</a></li>
+        <!-- <li><a href="#" id="footer-link-4">Kamar</a></li>
+        <li><a href="#" id="footer-link-5">Profil</a></li>
+        <li><a href="#" id="footer-link-6">FAQ</a></li> -->
+      </ul>
+    </div>
+
+    <!-- <div class="footer-col">
+      <h4 id="footer-tour-title">Paket Tour</h4>
+      <ul>
+        <li><a href="#" id="footer-tour-1">Standar</a></li>
+        <li><a href="#" id="footer-tour-2">Eksekutif</a></li>
+        <li><a href="#" id="footer-tour-3">Deluxe</a></li>
+        <li><a href="#" id="footer-tour-4">Superior</a></li>
+        <li><a href="#" id="footer-tour-5">Keluarga</a></li>
+        <li><a href="#" id="footer-tour-6">Klasik</a></li>
+      </ul>
+    </div> -->
+
+    <div class="footer-col">
+      <h4 id="footer-contact-title">Kontak Kami</h4>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Bongkasa, Badung, Bali</span>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>gracetour@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5.09 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 23 18v2z" stroke-width="2"/></svg>
+        <span>+62 857-3895-1353</span>
+      </div>
+    </div>
+
+    <div class="footer-col map-col">
+      <h4 id="footer-map-title">Peta</h4>
+      <div class="map-embed">
+        <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.518!2d115.1754!3d-8.5778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd239b5b2bdb2c7%3A0x5030bfbcaf6d7e29!2sBongkasa%2C%20Badung%20Regency%2C%20Bali!5e0!3m2!1sid!2sid!4v1"
+          title="Lokasi Grace Tour">
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span class="copy" id="footer-copy">© Copyright by Grace Tour 2026. Semua hak dilindungi</span>
+      <nav class="legal-links">
+        <a href="#" id="footer-privacy">Kebijakan Privasi</a>
+        <a href="#" id="footer-terms">Syarat Penggunaan</a>
+        <a href="#" id="footer-legal">Legal</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= LANGUAGE SCRIPT ================= -->
+<!-- <script>
+  const translations = {
+    id: {
+      'nav-home'            : 'Home',
+      'nav-rental'          : 'Paket Tour & Wisata',
+      'nav-gallery'         : 'Galeri',
+      'gallery-label-text'  : 'Galeri Kami',
+      'gallery-title'       : 'Jelajahi Galeri dan<br>Lihat Masa Depan Terungkap',
+      'gallery-desc'        : 'Dari detail yang elegan hingga momen interaksi nyata, galeri ini menangkap<br>esensi dari apa yang membuat masa depan terasa nyata hari ini.',
+      'gallery-cta'         : 'Jelajahi Galeri',
+      'footer-desc'         : 'Di Grace Tour, Setiap Detik Merupakan Petualangan Baru dalam Kenyamanan dan Kemewahan!',
+      'footer-link-title'   : 'Link',
+      'footer-link-1'       : 'Daftar',
+      'footer-link-2'       : 'Masuk',
+      'footer-link-3'       : 'Beranda',
+      'footer-link-4'       : 'Kamar',
+      'footer-link-5'       : 'Profil',
+      'footer-link-6'       : 'FAQ',
+      'footer-tour-title'   : 'Paket Tour',
+      'footer-tour-1'       : 'Standar',
+      'footer-tour-2'       : 'Eksekutif',
+      'footer-tour-3'       : 'Deluxe',
+      'footer-tour-4'       : 'Superior',
+      'footer-tour-5'       : 'Keluarga',
+      'footer-tour-6'       : 'Klasik',
+      'footer-contact-title': 'Kontak Kami',
+      'footer-map-title'    : 'Peta',
+      'footer-copy'         : '© Copyright by Grace Tour 2026. Semua hak dilindungi',
+      'footer-privacy'      : 'Kebijakan Privasi',
+      'footer-terms'        : 'Syarat Penggunaan',
+      'footer-legal'        : 'Legal',
+    },
+    en: {
+      'nav-home'            : 'Home',
+      'nav-rental'          : 'Tour & Travel Packages',
+      'nav-gallery'         : 'Gallery',
+      'gallery-label-text'  : 'Our Gallery',
+      'gallery-title'       : 'Explore the Gallery and<br>See the Future Unfold',
+      'gallery-desc'        : 'From sleek details to real-life moments of interaction, this gallery captures<br>the essence of what makes the future feel real today.',
+      'gallery-cta'         : 'Explore the Gallery',
+      'footer-desc'         : 'At Grace Tour, Every Moment is a New Adventure in Comfort and Luxury!',
+      'footer-link-title'   : 'Links',
+      'footer-link-1'       : 'Register',
+      'footer-link-2'       : 'Login',
+      'footer-link-3'       : 'Home',
+      'footer-link-4'       : 'Room',
+      'footer-link-5'       : 'Profile',
+      'footer-link-6'       : 'FAQ',
+      'footer-tour-title'   : 'Tour Packages',
+      'footer-tour-1'       : 'Standard',
+      'footer-tour-2'       : 'Executive',
+      'footer-tour-3'       : 'Deluxe',
+      'footer-tour-4'       : 'Superior',
+      'footer-tour-5'       : 'Family',
+      'footer-tour-6'       : 'Classic',
+      'footer-contact-title': 'Contact Us',
+      'footer-map-title'    : 'Map',
+      'footer-copy'         : '© Copyright by Grace Tour 2026. All rights reserved',
+      'footer-privacy'      : 'Privacy Policy',
+      'footer-terms'        : 'Terms of Use',
+      'footer-legal'        : 'Legal',
+    }
+  };
+
+  const htmlFields = ['gallery-title', 'gallery-desc'];
+  let currentLang = 'id';
+
+  function setLanguage(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+    const t = translations[lang];
+    document.documentElement.lang = lang;
+
+    Object.keys(t).forEach(key => {
+      const el = document.getElementById(key);
+      if (!el) return;
+      htmlFields.includes(key) ? (el.innerHTML = t[key]) : (el.textContent = t[key]);
+    });
+
+    document.getElementById('lang-btn-id').classList.toggle('lang-active', lang === 'id');
+    document.getElementById('lang-btn-en').classList.toggle('lang-active', lang === 'en');
+  }
+</script> -->
+
+<script src="galeri.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</body>
+</html>

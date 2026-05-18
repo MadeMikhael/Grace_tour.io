@@ -1,253 +1,345 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<link rel="icon" type="image/png" href="/img/icon_web.png" style="width: 48px; height: 48px;"/>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GRACE TOUR</title>
-
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background:#f5f5f5;
-}
-
-/* ================= NAVBAR ================= */
-.navbar{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    background:#fff;
-    padding:15px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 5px 20px rgba(0,0,0,0.1);
-    z-index:1000;
-}
-
-.logo{
-    font-weight:700;
-    font-size:22px;
-    color:#0b2a4a;
-}
-
-.nav-links{
-    display:flex;
-    gap:25px;
-}
-
-.nav-links a{
-    text-decoration:none;
-    color:#333;
-    font-weight:500;
-}
-
-.nav-links a:hover{
-    color:#f7941d;
-}
-
-.menu-toggle{
-    display:none;
-    font-size:28px;
-    cursor:pointer;
-}
-
-.language-switch button{
-    padding:5px 10px;
-    border:none;
-    background:#f7941d;
-    color:#fff;
-    border-radius:5px;
-    cursor:pointer;
-    font-size:12px;
-}
-
-.language-switch{
-    display:flex;
-    gap:5px;
-}
-
-/* ================= HERO ================= */
-.hero{
-    height:100vh;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:#fff;
-    overflow:hidden;
-}
-
-.hero-bg{
-    position:absolute;
-    inset:0;
-    background-size:cover;
-    background-position:center;
-    opacity:0;
-    transition:opacity 0.3s ease-in-out;
-}
-
-.hero-bg.active{
-    opacity:3;
-}
-
-.hero::after{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.5);
-    z-index:1;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-}
-
-.hero h1{
-    font-size:48px;
-    margin:20px 0;
-}
-
-.btn{
-    padding:12px 30px;
-    background:#f7941d;
-    color:#fff;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:600;
-}
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-
-    .nav-links{
-        position:absolute;
-        top:70px;
-        right:0;
-        background:#fff;
-        width:100%;
-        flex-direction:column;
-        text-align:center;
-        display:none;
-        padding:20px 0;
-    }
-
-    .nav-links.active{
-        display:flex;
-    }
-
-    .menu-toggle{
-        display:block;
-    }
-
-    .hero h1{
-        font-size:32px;
-    }
-}
-</style>
 </head>
+
 <body>
 
 <!-- ================= NAVBAR ================= -->
 <div class="navbar">
-    <div class="logo">GRACE TOUR</div>
-
+    <div class="logo">
+      <img src="img/icon_web.png" alt="">
+      GRACE TOUR
+    </div>
+ 
     <div style="display:flex;align-items:center;gap:15px;">
-        
         <div class="language-switch">
-            <button onclick="setLanguage('id')">ID</button>
-            <button onclick="setLanguage('en')">EN</button>
+            <button onclick="setLanguage('id')" id="lang-btn-id" class="lang-active">ID</button>
+            <button onclick="setLanguage('en')" id="lang-btn-en">EN</button>
         </div>
-
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     </div>
-
+ 
     <div class="nav-links" id="navLinks">
-        <a href="#" id="nav-home">Home</a>
-        <a href="#" id="nav-rental">Harga Rental</a>
-        <a href="#" id="nav-pickup">Layanan Jemput</a>
-        <a href="#" id="nav-wisata">Wisata</a>
-        <a href="#" id="nav-gallery">Galeri</a>
-        <a href="#" id="nav-booking">Booking</a>
+        <a href="#"                id="nav-home">Beranda</a>
+        <a href="paket_tour.html"  id="nav-rental">Paket Tour & Wisata</a>
+        <a href="Galeri.html"      id="nav-gallery">Galeri</a>
     </div>
 </div>
-
+ 
 <!-- ================= HERO ================= -->
 <section class="hero">
-
-    <!-- 4 Background Images -->
     <div class="hero-bg active" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')"></div>
     <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470')"></div>
     <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1493558103817-58b2924bce98')"></div>
     <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e')"></div>
-
+ 
     <div class="hero-content">
         <h4>GRACETRANSPORT.ID</h4>
         <h1 id="hero-title">Solusi Perjalanan<br>Wisata Anda</h1>
         <a href="https://wa.me/6285967099599?text=Halo%20Admin%20Grace%20tour%20and%20travel%20Bali,%20saya%20ingin%20booking%20perjalanan."
-           target="_blank"
-           class="btn"
-           id="hero-button">
-           Booking Sekarang
+          target="_blank" class="btn" id="hero-button">
+          Booking Sekarang
         </a>
     </div>
-
 </section>
+ 
+<!-- ================= SERVICES ================= -->
+<section class="section">
+  <div class="dot-grid" id="dotGrid"></div>
+ 
+  <div class="section-header">
+    <p class="section-label" id="svc-label">Kategori</p>
+    <h2 class="section-title" id="svc-title">Kami Menawarkan Layanan Terbaik</h2>
+  </div>
+ 
+  <div class="cards" data-aos="fade-up" data-aos-duration="1500">
+    <!-- 1 -->
+    <div class="card card-weather">
+      <div class="icon-wrap">
+        <div class="icon-bg"></div>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="20" cy="30" rx="12" ry="7" stroke="#3ba8c4" stroke-width="2.2" fill="none"/>
+          <line x1="20" y1="23" x2="20" y2="38" stroke="#3ba8c4" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="14" y1="38" x2="26" y2="38" stroke="#3ba8c4" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M28 18 Q34 12 30 8" stroke="#e8b84b" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M31 21 Q40 14 35 7" stroke="#e8b84b" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="27" cy="19" r="2.5" fill="#e8b84b"/>
+        </svg>
+      </div>
+      <h3 class="card-title" id="svc-card1-title">Cuaca Terkini</h3>
+      <p class="card-desc"   id="svc-card1-desc">Informasi cuaca terkini untuk perjalanan wisata Anda yang aman dan nyaman.</p>
+    </div>
+ 
+    <!-- 2 -->
+    <div class="card card-flights featured">
+      <div class="icon-wrap">
+        <div class="icon-bg"></div>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 28L20 22L26 8L30 12L22 26L36 22L38 26L22 32L20 40L16 38L18 30L8 28Z" fill="#3ba8c4" opacity=".85"/>
+          <circle cx="26" cy="8" r="3" fill="#e8b84b"/>
+        </svg>
+      </div>
+      <h3 class="card-title" id="svc-card2-title">Trip Terbaik</h3>
+      <p class="card-desc"   id="svc-card2-desc">Paket perjalanan terbaik yang dirancang khusus untuk kepuasan Anda.</p>
+    </div>
+ 
+    <!-- 3 -->
+    <div class="card card-events">
+      <div class="icon-wrap">
+        <div class="icon-bg"></div>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="17" y="8" width="14" height="20" rx="7" fill="#666" opacity=".7"/>
+          <path d="M12 26c0 6.627 5.373 12 12 12s12-5.373 12-12" stroke="#555" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <line x1="24" y1="38" x2="24" y2="44" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="18" y1="44" x2="30" y2="44" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="card-title" id="svc-card3-title">Event Lokal</h3>
+      <p class="card-desc"   id="svc-card3-desc">Nikmati berbagai event dan budaya lokal yang memukau di setiap destinasi.</p>
+    </div>
+ 
+    <!-- 4 -->
+    <div class="card card-custom">
+      <div class="icon-wrap">
+        <div class="icon-bg"></div>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 16a8 8 0 100 16 8 8 0 000-16z" stroke="#e8b84b" stroke-width="2.2" fill="none"/>
+          <circle cx="24" cy="24" r="3" fill="#e8b84b"/>
+          <path d="M24 8v4M24 36v4M8 24h4M36 24h4
+                   M12.7 12.7l2.83 2.83M32.47 32.47l2.83 2.83
+                   M12.7 35.3l2.83-2.83M32.47 15.53l2.83-2.83"
+                stroke="#e8b84b" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="card-title" id="svc-card4-title">Kustomisasi</h3>
+      <p class="card-desc"   id="svc-card4-desc">Kami menyediakan layanan wisata yang sepenuhnya disesuaikan kebutuhan Anda.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ================= CAROUSEL ================= -->
+<section class="carousel-section">
+  <h2 class="section-title" id="carousel-title">Temukan destinasi paling populer kami!</h2>
+ 
+  <div class="carousel-wrapper" data-aos="fade-down" data-aos-duration="1500">
+    <button class="arrow arrow-left hidden" id="arrowLeft" aria-label="Previous">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+ 
+    <div class="carousel-track" id="track">
+      <div class="dest-card">
+        <img src="img/ubud.jpg" alt="Zermatt, Switzerland"/>
+        <div class="card-info">
+          <div class="country">Ubud</div>
+          <!-- <div class="city">Zermatt</div> -->
+        </div>
+        <a href="https://www.google.com/search?q=ubud&oq=ubud&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIKCAEQLhixAxiABDIMCAIQIxgnGIAEGIoFMg8IAxAAGEMYsQMYgAQYigUyBwgEEC4YgAQyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgxMDgxajBqOagCBrACAfEFufJ9sTazoso&sourceid=chrome&ie=UTF-8" class="btn-view" data-translate="btn-view">Lihat</a>
+      </div>
+ 
+      <div class="dest-card">
+        <img src="img/Pura Tanah Lot.jpg" alt="Sydney, Australia"/>
+        <div class="card-info">
+          <div class="country">Pura Tanah Lot</div>
+          <!-- <div class="city">Sydney</div> -->
+        </div>
+        <a href="https://www.google.com/search?q=pura+tanah+lot&oq=pura+tanah+&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyDQgBEC4YrwEYxwEYgAQyEAgCEC4YrwEYxwEYgAQYjgUyBwgDEAAYgAQyBggEEEUYOTIHCAUQABiABDIGCAYQRRg9MgYIBxBFGDzSAQg4OTczajBqOagCALACAA&sourceid=chrome&ie=UTF-8" class="btn-view" data-translate="btn-view">Lihat</a>
+      </div>
+ 
+      <div class="dest-card">
+        <img src="/img/Majestic Uluwatu Temple.jpg" alt="Cappadocia, Turkiye"/>
+        <div class="card-info">
+          <div class="country">Pura Luhur Uluwatu</div>
+          <!-- <div class="city">Cappadocia</div> -->
+        </div>
+        <a href="https://www.google.com/search?gs_ssp=eJzj4tTP1TdIyTPNqjBgtFIxqDBKSTEySUtLNjJITrIwtDS0MqhITrK0SDFMSjRPSTIwsTT1EiooLUpUyCnNKC1SKM0pLU8sKQUAwWQVkg&q=pura+luhur+uluwatu&oq=Pura+Luhur+&gs_lcrp=EgZjaHJvbWUqDQgBEC4YrwEYxwEYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyDQgCEC4YrwEYxwEYgAQyDQgDEC4YrwEYxwEYgAQyDQgEEC4YrwEYxwEYgAQyBwgFEAAYgAQyDQgGEC4YrwEYxwEYgAQyDQgHEC4YrwEYxwEYgAQyDQgIEC4YrwEYxwEYgAQyDQgJEC4YrwEYxwEYgATSAQkxMTA5NWowajmoAgCwAgA&sourceid=chrome&ie=UTF-8" class="btn-view" data-translate="btn-view">Lihat</a>
+      </div>
+ 
+      <div class="dest-card">
+        <img src="img/KUTA.jpg" alt="Cinque Terre, Italy"/>
+        <div class="card-info">
+          <div class="country">Pantai Kuta</div>
+          <!-- <div class="city">Cinque Terre</div> -->
+        </div>
+        <a href="https://www.google.com/search?gs_ssp=eJzj4tVP1zc0TDYsMCsyNMwzYPTiLkjMK0nMVMguLUkEAHLECJM&q=pantai+kuta&oq=Pantai+Kuta&gs_lcrp=EgZjaHJvbWUqCggAEC4YsQMYgAQyCggAEC4YsQMYgAQyDwgBEEUYORjjAhixAxiABDIHCAIQABiABDIHCAMQLhiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIGCAcQRRg80gEIMzgwNmowajmoAgCwAgA&sourceid=chrome&ie=UTF-8" class="btn-view" data-translate="btn-view">Lihat</a>
+      </div>
+ 
+      <div class="dest-card">
+        <img src="img/jimbaran.jpg" alt="Kyoto, Japan"/>
+        <div class="card-info">
+          <div class="country">Pantai Jimbaran</div>
+          <!-- <div class="city">Kyoto</div> -->
+        </div>
+        <a href="https://www.google.com/search?q=pantai+jimbaran&oq=Pantai+Jimbara&gs_lcrp=EgZjaHJvbWUqCggAEAAY4wIYgAQyCggAEAAY4wIYgAQyBwgBEC4YgAQyBwgCEC4YgAQyBggDEEUYOTIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIGCAcQRRg80gEIODU3OWowajmoAgawAgHxBX5SwbzN8C_68QV-UsG8zfAv-g&sourceid=chrome&ie=UTF-8" class="btn-view" data-translate="btn-view">Lihat</a>
+      </div>
+ 
+      <div class="dest-card">
+        <img src="img/bedugul.jpg" alt="Reykjavik, Iceland"/>
+        <div class="card-info">
+          <div class="country">Danau Beratan & <br>Pura Ulun Danu</div>
+          <!-- <div class="city">Reykjavik</div> -->
+        </div>
+        <a href="https://www.google.com/search?gs_ssp=eJzj4tLP1TcwrapMN8wwYLRSNagwSkkxtLA0S7ZMS0w2sDA1tzKoMLQwMjEzNbNINUlJMkwyNfZSSEnMSyxVSEotSixJzAPxFApKixIVSnNKwbxSABH3Ggc&q=danau+beratan+dan+pura+ulun+danu&oq=Danau+Beratan+dan+&gs_lcrp=EgZjaHJvbWUqDQgBEC4YrwEYxwEYgAQyBggAEEUYOTINCAEQLhivARjHARiABDIICAIQABgWGB4yBwgDEAAY7wUyBwgEEAAY7wUyBggFEEUYPNIBCDgyNjdqMGo5qAIAsAIA&sourceid=chrome&ie=UTF-8" class="btn-view" data-translate="btn-view">Lihat</a>
+      </div>
+    </div>
+ 
+    <button class="arrow arrow-right" id="arrowRight" aria-label="Next">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+  <div class="dots" id="dots"></div>
+</section>
+ 
+<!-- ================= NEWSLETTER ================= -->
+<section class="newsletter-section" data-aos="flip-up" data-aos-duration="1500">
+  <div class="newsletter-bg"></div>
+  <div class="newsletter-frame"></div>
+  <div class="corner-dot tl"></div>
+  <div class="corner-dot tr"></div>
+  <div class="corner-dot bl"></div>
+  <div class="corner-dot br"></div>
+ 
+  <div class="newsletter-content">
+    <h2 class="newsletter-title" id="newsletter-title">
+      Temukan Perjalanan Wisata Anda <br>dengan Grace Tour & Travel
+    </h2>
+ 
+    <div class="newsletter-badges">
+      <div class="badge">
+        <span class="badge-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+        <span id="badge1">Penawaran Wisata Terbaik</span>
+      </div>
+      <div class="badge">
+        <span class="badge-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+        <span id="badge2">Promosi Eksklusif</span>
+      </div>
+      <div class="badge">
+        <span class="badge-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+        <span id="badge3">Tips Perjalanan Ahli</span>
+      </div>
+    </div>
+ 
+    <div class="newsletter-form">
+      <!-- <input class="newsletter-input" id="emailInput" type="email"
+            placeholder="Masukkan Email Anda" autocomplete="email"/> -->
+      <a href="paket_tour.html" class="newsletter-btn" id="subscribeBtn">
+        <span id="subscribe-btn-text">Booking</span>
+        <svg viewBox="0 0 16 16">
+          <line x1="2" y1="8" x2="13" y2="8"/>
+          <polyline points="9,4 13,8 9,12"/>
+        </svg>
+      </a>
+    </div>
+ 
+    <p class="newsletter-success" id="successMsg">
+      ✓ Berhasil berlangganan! Selamat datang di Grace Tour & Travel.
+    </p>
+  </div>
+</section>
+ 
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-main">
+ 
+    <!-- Brand -->
+    <div class="brand">
+      <h2>Grace Tour</h2>
+      <p id="footer-desc">Di Grace Tour, Setiap Detik Merupakan Petualangan Baru dalam Kenyamanan dan Kemewahan!</p>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.01" stroke-width="3"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <!-- <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a> -->
+        <!-- <a href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a> -->
+      </div>
+    </div>
+ 
+    <!-- Link -->
+    <div class="footer-col">
+      <h4 id="footer-link-title">Link</h4>
+      <ul>
+        <li><a href="main.html" id="footer-link-1">Beranda</a></li>
+        <li><a href="paket_tour.html" id="footer-link-2">Paket Tour & Wisata</a></li>
+        <li><a href="Galeri.html" id="footer-link-3">Galeri</a></li>
+        <!-- <li><a href="#" id="footer-link-4">Kamar</a></li>
+        <li><a href="#" id="footer-link-5">Profil</a></li>
+        <li><a href="#" id="footer-link-6">FAQ</a></li> -->
+      </ul>
+    </div>
+ 
+    <!-- Paket Tour -->
+    <!-- <div class="footer-col">
+      <h4 id="footer-tour-title">Paket Tour</h4>
+      <ul>
+        <li><a href="#" id="footer-tour-1">Standar</a></li>
+        <li><a href="#" id="footer-tour-2">Eksekutif</a></li>
+        <li><a href="#" id="footer-tour-3">Deluxe</a></li>
+        <li><a href="#" id="footer-tour-4">Superior</a></li>
+        <li><a href="#" id="footer-tour-5">Keluarga</a></li>
+        <li><a href="#" id="footer-tour-6">Klasik</a></li>
+      </ul>
+    </div> -->
+ 
+    <!-- Kontak -->
+    <div class="footer-col">
+      <h4 id="footer-contact-title">Kontak Kami</h4>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Bongkasa, Badung, Bali</span>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>gracetour@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5.09 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 23 18v2z" stroke-width="2"/></svg>
+        <span>+62 857-3895-1353</span>
+      </div>
+    </div>
+ 
+    <!-- Map -->
+    <div class="footer-col map-col">
+      <h4 id="footer-map-title">Peta</h4>
+      <div class="map-embed">
+        <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.518!2d115.1754!3d-8.5778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd239b5b2bdb2c7%3A0x5030bfbcaf6d7e29!2sBongkasa%2C%20Badung%20Regency%2C%20Bali!5e0!3m2!1sid!2sid!4v1"
+          title="Lokasi Grace Tour">
+        </iframe>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span class="copy" id="footer-copy">© Copyright by Grace Tour 2026. All right reserved</span>
+      <nav class="legal-links">
+        <a href="#" id="footer-privacy">Privacy Policy</a>
+        <a href="#" id="footer-terms">Terms of Use</a>
+        <a href="#" id="footer-legal">Legal</a>
+      </nav>
+    </div>
+  </div>
+</footer>
 
+<script src="script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-
-/* ================= MENU TOGGLE ================= */
-function toggleMenu(){
-    document.getElementById("navLinks").classList.toggle("active");
-}
-
-/* ================= BACKGROUND SLIDE 2 DETIK ================= */
-let slides = document.querySelectorAll(".hero-bg");
-let index = 0;
-
-setInterval(() => {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-}, 2000);
-
-/* ================= LANGUAGE SWITCH ================= */
-function setLanguage(lang){
-
-    if(lang === 'id'){
-        document.getElementById("nav-rental").innerText = "Harga Rental";
-        document.getElementById("nav-pickup").innerText = "Layanan Jemput";
-        document.getElementById("nav-wisata").innerText = "Wisata";
-        document.getElementById("nav-gallery").innerText = "Galeri";
-        document.getElementById("nav-booking").innerText = "Booking";
-        document.getElementById("hero-title").innerHTML = "Solusi Perjalanan<br>Wisata Anda";
-        document.getElementById("hero-button").innerText = "Booking Sekarang";
-    }
-
-    if(lang === 'en'){
-        document.getElementById("nav-rental").innerText = "Rental Price";
-        document.getElementById("nav-pickup").innerText = "Pickup Service";
-        document.getElementById("nav-wisata").innerText = "Tour";
-        document.getElementById("nav-gallery").innerText = "Gallery";
-        document.getElementById("nav-booking").innerText = "Booking";
-        document.getElementById("hero-title").innerHTML = "Your Travel<br>Solution";
-        document.getElementById("hero-button").innerText = "Book Now";
-    }
-
-}
-
+  AOS.init();
 </script>
-
 </body>
 </html>

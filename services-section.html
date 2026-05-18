@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We Offer Best Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1b2564;
+      --purple: #7c3aed;
+      --coral:  #e05c4b;
+      --cream:  #fdf9f3;
+      --sand:   #f5efe6;
+      --teal:   #3ba8c4;
+      --gold:   #e8b84b;
+      --text:   #4a4a6a;
+      --light:  #f7f7fb;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+    }
+
+    /* ── Section wrapper ── */
+    .section {
+      position: relative;
+      max-width: 1100px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 72px 64px 80px;
+      box-shadow: 0 8px 60px rgba(28, 37, 100, .08);
+      overflow: hidden;
+    }
+
+    /* ── Dot-grid decoration (top-right) ── */
+    .dot-grid {
+      position: absolute;
+      top: 28px; right: 36px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      opacity: .55;
+    }
+    .dot-grid span {
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #c8c8de;
+    }
+    .dot-grid span.accent { background: var(--purple); }
+    .dot-grid span.accent-red { background: var(--coral); }
+
+    /* ── Header ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      color: var(--navy);
+      line-height: 1.18;
+    }
+
+    /* ── Cards grid ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    /* ── Single card ── */
+    .card {
+      position: relative;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 24px 36px;
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1),
+                  box-shadow .35s ease;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(28,37,100,.12);
+    }
+
+    /* ── Active / featured card ── */
+    .card.featured {
+      background: #ffffff;
+      box-shadow: 0 12px 40px rgba(28,37,100,.13);
+    }
+    /* Coral blob bottom-left of featured card */
+    .card.featured::after {
+      content: '';
+      position: absolute;
+      bottom: -22px; left: -18px;
+      width: 80px; height: 80px;
+      background: var(--coral);
+      border-radius: 50% 0 50% 0;
+      z-index: 0;
+    }
+
+    /* ── Icon container ── */
+    .icon-wrap {
+      position: relative;
+      width: 72px; height: 72px;
+      margin-bottom: 22px;
+    }
+    .icon-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      opacity: .18;
+    }
+    .icon-wrap svg {
+      position: relative;
+      z-index: 1;
+      width: 100%; height: 100%;
+      padding: 14px;
+    }
+
+    /* icon background colours per card */
+    .card-weather .icon-bg  { background: var(--teal); }
+    .card-flights .icon-bg  { background: var(--teal); }
+    .card-events  .icon-bg  { background: #888; }
+    .card-custom  .icon-bg  { background: var(--gold); }
+
+    /* ── Card text ── */
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .card-desc {
+      font-size: .88rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    /* ── Entrance animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .section-header { animation: fadeUp .7s ease both; }
+    .card { animation: fadeUp .7s ease both; }
+    .card:nth-child(1) { animation-delay: .1s; }
+    .card:nth-child(2) { animation-delay: .2s; }
+    .card:nth-child(3) { animation-delay: .3s; }
+    .card:nth-child(4) { animation-delay: .4s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .section { padding: 52px 36px 60px; }
+      .cards   { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .section { padding: 40px 22px 48px; }
+      .cards   { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="section">
+
+  <!-- Dot grid decoration -->
+  <div class="dot-grid" id="dotGrid"></div>
+
+  <!-- Header -->
+  <div class="section-header">
+    <p class="section-label">Category</p>
+    <h2 class="section-title">We Offer Best Services</h2>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards">
+
+    <!-- 1. Calculated Weather -->
+    <div class="card card-weather">
+      <div class="icon-wrap">
+        <div class="icon-bg"></div>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Satellite dish -->
+          <ellipse cx="20" cy="30" rx="12" ry="7" stroke="#3ba8c4" stroke-width="2.2" fill="none"/>
+          <line x1="20" y1="23" x2="20" y2="38" stroke="#3ba8c4" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="14" y1="38" x2="26" y2="38" stroke="#3ba8c4" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M28 18 Q34 12 30 8" stroke="#e8b84b" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M31 21 Q40 14 35 7" stroke="#e8b84b" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="27" cy="19" r="2.5" fill="#e8b84b"/>
+        </svg>
+      </div>
+      <h3 class="card-title">Calculated Weather</h3>
+      <p class="card-desc">Built Wicket longer admire do barton vanity itself do in it.</p>
+    </div>
+
+    <!-- 2. Best Flights (featured) -->
+    <div class="card card-flights featured">
+      <div class="icon-wrap">
+        <div class="icon-bg"></div>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Airplane -->
+          <path d="M8 28L20 22L26 8L30 12L22 26L36 22L38 26L22 32L20 40L16 38L18 30L8 28Z"
+                fill="#3ba8c4" opacity=".85"/>
+          <circle cx="26" cy="8" r="3" fill="#e8b84b"/>
+        </svg>
+      </div>
+      <h3 class="card-title">Best Flights</h3>
+      <p class="card-desc">Engrossed listening. Park gate sell they west hard for the.</p>
+    </div>
+
+    <!-- 3. Local Events -->
+    <div class="card card-events">
+      <div class="icon-wrap">
+        <div class="icon-bg"></div>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Microphone -->
+          <rect x="17" y="8" width="14" height="20" rx="7" fill="#666" opacity=".7"/>
+          <path d="M12 26c0 6.627 5.373 12 12 12s12-5.373 12-12" stroke="#555" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <line x1="24" y1="38" x2="24" y2="44" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="18" y1="44" x2="30" y2="44" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="card-title">Local Events</h3>
+      <p class="card-desc">Barton vanity itself do in it. Preferd to men it engrossed listening.</p>
+    </div>
+
+    <!-- 4. Customization -->
+    <div class="card card-custom">
+      <div class="icon-wrap">
+        <div class="icon-bg"></div>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Gear -->
+          <path d="M24 16a8 8 0 100 16 8 8 0 000-16z" stroke="#e8b84b" stroke-width="2.2" fill="none"/>
+          <circle cx="24" cy="24" r="3" fill="#e8b84b"/>
+          <path d="M24 8v4M24 36v4M8 24h4M36 24h4
+                   M12.7 12.7l2.83 2.83M32.47 32.47l2.83 2.83
+                   M12.7 35.3l2.83-2.83M32.47 15.53l2.83-2.83"
+                stroke="#e8b84b" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="card-title">Customization</h3>
+      <p class="card-desc">We deliver outsourced aviation services for military customers.</p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // ── Build dot grid ──────────────────────────────────────────
+  (function () {
+    const grid = document.getElementById('dotGrid');
+    const rows = 4, cols = 6;
+    // accent positions (row, col) zero-indexed
+    const accents      = new Set(['1-2', '2-4']);
+    const accentsRed   = new Set(['0-5']);
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const span = document.createElement('span');
+        const key = `${r}-${c}`;
+        if (accents.has(key))    span.classList.add('accent');
+        if (accentsRed.has(key)) span.classList.add('accent-red');
+        grid.appendChild(span);
+      }
+    }
+  })();
+
+  // ── Subtle tilt on hover ────────────────────────────────────
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width  - 0.5;
+      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      card.style.transform = `translateY(-8px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+</script>
+</body>
+</html>
