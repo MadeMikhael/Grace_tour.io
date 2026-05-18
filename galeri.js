@@ -143,7 +143,7 @@ function setLanguage(lang) {
 
 const translations = {
     id: {
-      'nav-home'            : 'Home',
+      'nav-home'            : 'Beranda',
       'nav-rental'          : 'Paket Tour & Wisata',
       'nav-gallery'         : 'Galeri',
       'gallery-label-text'  : 'Galeri Kami',

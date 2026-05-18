@@ -70,7 +70,7 @@ function setLanguage(lang) {
 const translations = {
     id: {
       /* Navbar */
-      'nav-home'            : 'Home',
+      'nav-home'            : 'Beranda',
       'nav-rentall'         : 'Paket Tour & Wisata',
       'nav-gallery'         : 'Galeri',
       /* Header destinasi */
